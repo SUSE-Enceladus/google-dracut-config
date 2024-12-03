@@ -34,8 +34,6 @@ BuildArch:      noarch
 %build
 
 %install
-install -D -m 644 etc/dracut.conf.d/07-aws-type-switch.conf \
-    %{buildroot}%{_sysconfdir}/dracut.conf.d/07-aws-type-switch.conf
 install -D -m 644 etc/dracut.conf.d/07-dracut-nvme.conf \
     %{buildroot}%{_sysconfdir}/dracut.conf.d/07-dracut-nvme.conf
 install -D -m 644 etc/dracut.conf.d/07-ext4.conf \
@@ -53,7 +51,6 @@ install -D -m 644 etc/dracut.conf.d/11-resume.conf \
 %doc README.md
 %license LICENSE
 %dir %{_sysconfdir}/dracut.conf.d/
-%config %{_sysconfdir}/dracut.conf.d/07-aws-type-switch.conf
 %config %{_sysconfdir}/dracut.conf.d/07-dracut-nvme.conf
 %config %{_sysconfdir}/dracut.conf.d/07-ext4.conf
 %config %{_sysconfdir}/dracut.conf.d/07-virtio.conf
