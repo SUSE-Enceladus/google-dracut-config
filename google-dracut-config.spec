@@ -29,7 +29,7 @@ BuildArch:      noarch
 %description
 
 %prep
-%autosetup -p1
+%autosetup -p1 -n %{name}
 
 %build
 
