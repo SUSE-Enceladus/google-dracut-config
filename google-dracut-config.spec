@@ -51,11 +51,11 @@ install -D -m 644 etc/dracut.conf.d/11-resume.conf \
 %doc README.md
 %license LICENSE
 %dir %{_sysconfdir}/dracut.conf.d/
-%config %{_sysconfdir}/dracut.conf.d/07-dracut-nvme.conf
-%config %{_sysconfdir}/dracut.conf.d/07-ext4.conf
-%config %{_sysconfdir}/dracut.conf.d/07-virtio.conf
-%config %{_sysconfdir}/dracut.conf.d/07-xfs.conf
-%config %{_sysconfdir}/dracut.conf.d/11-resume.conf
+%{_sysconfdir}/dracut.conf.d/07-dracut-nvme.conf
+%{_sysconfdir}/dracut.conf.d/07-ext4.conf
+%{_sysconfdir}/dracut.conf.d/07-virtio.conf
+%{_sysconfdir}/dracut.conf.d/07-xfs.conf
+%{_sysconfdir}/dracut.conf.d/11-resume.conf
 
 %changelog
 
