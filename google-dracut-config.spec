@@ -17,13 +17,14 @@
 
 
 Name:           google-dracut-config
-Version:        0.0.1
+Version:        0.0.2
 Release:        0
 Summary:        Google Dracut config overlay files
 License:        Apache-2.0
 Group:          System/Management
 URL:            https://github.com/SUSE-Enceladus/google-dracut-config
 Source:         %{name}-%{version}.tar.gz
+BuildRequires:  dracut
 BuildArch:      noarch
 
 %description
@@ -34,10 +35,13 @@ BuildArch:      noarch
 %build
 
 %install
-install -D -m 644 etc/dracut.conf.d/07-dracut-nvme.conf \
-    %{buildroot}%{_sysconfdir}/dracut.conf.d/07-dracut-nvme.conf
+
 install -D -m 644 etc/dracut.conf.d/07-ext4.conf \
     %{buildroot}%{_sysconfdir}/dracut.conf.d/07-ext4.conf
+install -D -m 644 etc/dracut.conf.d/07-net.conf \
+    %{buildroot}%{_sysconfdir}/dracut.conf.d/07-net.conf
+install -D -m 644 etc/dracut.conf.d/07-nvme.conf \
+    %{buildroot}%{_sysconfdir}/dracut.conf.d/07-nvme.conf
 install -D -m 644 etc/dracut.conf.d/07-virtio.conf \
     %{buildroot}%{_sysconfdir}/dracut.conf.d/07-virtio.conf
 install -D -m 644 etc/dracut.conf.d/07-xfs.conf \
@@ -47,12 +51,18 @@ install -D -m 644 etc/dracut.conf.d/11-resume.conf \
 
 %check
 
+%post
+has_idpf=$(find /lib/modules -name 'idpf*.ko*')
+if [ -z "$has_idpf" ]; then
+    sed -i s/idpf// %{_sysconfdir}/dracut.conf.d/07-net.conf
+fi
+
 %files
 %doc README.md
 %license LICENSE
-%dir %{_sysconfdir}/dracut.conf.d/
-%config %{_sysconfdir}/dracut.conf.d/07-dracut-nvme.conf
 %config %{_sysconfdir}/dracut.conf.d/07-ext4.conf
+%config %{_sysconfdir}/dracut.conf.d/07-net.conf
+%config %{_sysconfdir}/dracut.conf.d/07-nvme.conf
 %config %{_sysconfdir}/dracut.conf.d/07-virtio.conf
 %config %{_sysconfdir}/dracut.conf.d/07-xfs.conf
 %config %{_sysconfdir}/dracut.conf.d/11-resume.conf
