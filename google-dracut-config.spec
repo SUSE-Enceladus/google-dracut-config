@@ -25,8 +25,8 @@ Group:          System/Management
 URL:            https://github.com/SUSE-Enceladus/google-dracut-config
 Source:         %{name}-%{version}.tar.gz
 BuildRequires:  dracut
-Conflicts:      microsoft-dracut-config
-Conflicts:      amazon-dracut-config
+Provides:       dracut-instance-change-config
+Conflicts:      otherproviders(dracut-instance-change-config)
 BuildArch:      noarch
 
 %description
