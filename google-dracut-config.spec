@@ -17,7 +17,7 @@
 
 
 Name:           google-dracut-config
-Version:        0.0.2
+Version:        0.0.3
 Release:        0
 Summary:        Google Dracut config overlay files
 License:        Apache-2.0
@@ -25,6 +25,8 @@ Group:          System/Management
 URL:            https://github.com/SUSE-Enceladus/google-dracut-config
 Source:         %{name}-%{version}.tar.gz
 BuildRequires:  dracut
+Provides:       dracut-instance-change-config
+Conflicts:      otherproviders(dracut-instance-change-config)
 BuildArch:      noarch
 
 %description
@@ -68,4 +70,3 @@ fi
 %config %{_sysconfdir}/dracut.conf.d/11-resume.conf
 
 %changelog
-
