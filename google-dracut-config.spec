@@ -38,37 +38,37 @@ BuildArch:      noarch
 
 %install
 
-install -D -m 644 etc/dracut.conf.d/07-ext4.conf \
-    %{buildroot}%{_libexecdir}/dracut.conf.d/07-ext4.conf
-install -D -m 644 etc/dracut.conf.d/07-net.conf \
-    %{buildroot}%{_libexecdir}/dracut.conf.d/07-net.conf
-install -D -m 644 etc/dracut.conf.d/07-nvme.conf \
-    %{buildroot}%{_libexecdir}/dracut.conf.d/07-nvme.conf
-install -D -m 644 etc/dracut.conf.d/07-virtio.conf \
-    %{buildroot}%{_libexecdir}/dracut.conf.d/07-virtio.conf
-install -D -m 644 etc/dracut.conf.d/07-xfs.conf \
-    %{buildroot}%{_libexecdir}/dracut.conf.d/07-xfs.conf
-install -D -m 644 etc/dracut.conf.d/11-resume.conf \
-    %{buildroot}%{_libexecdir}/dracut.conf.d/11-resume.conf
+install -D -m 644 usr/lib/dracut/dracut.conf.d/07-ext4.conf \
+    %{buildroot}/usr/lib/dracut/dracut.conf.d/07-ext4.conf
+install -D -m 644 usr/lib/dracut/dracut.conf.d/07-net.conf \
+    %{buildroot}/usr/lib/dracut/dracut.conf.d/07-net.conf
+install -D -m 644 usr/lib/dracut/dracut.conf.d/07-nvme.conf \
+    %{buildroot}/usr/lib/dracut/dracut.conf.d/07-nvme.conf
+install -D -m 644 usr/lib/dracut/dracut.conf.d/07-virtio.conf \
+    %{buildroot}/usr/lib/dracut/dracut.conf.d/07-virtio.conf
+install -D -m 644 usr/lib/dracut/dracut.conf.d/07-xfs.conf \
+    %{buildroot}/usr/lib/dracut/dracut.conf.d/07-xfs.conf
+install -D -m 644 usr/lib/dracut/dracut.conf.d/11-resume.conf \
+    %{buildroot}/usr/lib/dracut/dracut.conf.d/11-resume.conf
 
 %check
 
 %post
 has_idpf=$(find /lib/modules -name 'idpf*.ko*')
 if [ -z "$has_idpf" ]; then
-    sed -i s/idpf// %{_libexecdir}/dracut.conf.d/07-net.conf
+    sed -i s/idpf// /usr/lib/dracut/dracut.conf.d/07-net.conf
 fi
 
 %files
 %doc README.md
 %license LICENSE
-%dir %{_libexecdir}dracut/
-%dir %{_libexecdir}dracut/dracut.conf.d/
-%{_libexecdir}dracut/dracut.conf.d/07-ext4.conf
-%{_libexecdir}dracut/dracut.conf.d/07-net.conf
-%{_libexecdir}dracut/dracut.conf.d/07-nvme.conf
-%{_libexecdir}dracut/dracut.conf.d/07-virtio.conf
-%{_libexecdir}dracut/dracut.conf.d/07-xfs.conf
-%{_libexecdir}dracut/dracut.conf.d/11-resume.conf
+%dir /usr/lib/dracut/
+%dir /usr/lib/dracut/dracut.conf.d/
+/usr/lib/dracut/dracut.conf.d/07-ext4.conf
+/usr/lib/dracut/dracut.conf.d/07-net.conf
+/usr/lib/dracut/dracut.conf.d/07-nvme.conf
+/usr/lib/dracut/dracut.conf.d/07-virtio.conf
+/usr/lib/dracut/dracut.conf.d/07-xfs.conf
+/usr/lib/dracut/dracut.conf.d/11-resume.conf
 
 %changelog
