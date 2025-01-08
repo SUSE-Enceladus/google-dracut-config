@@ -17,7 +17,7 @@
 
 
 Name:           google-dracut-config
-Version:        0.0.3
+Version:        0.0.4
 Release:        0
 Summary:        Google Dracut config overlay files
 License:        Apache-2.0
